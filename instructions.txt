@@ -1,0 +1,59 @@
+AI Chatbot Project Setup Guide
+Welcome to your AI Chatbot project! This document will guide you through the initial setup steps to get your environment ready.
+
+Project Structure:
+Your basic project is structured as follows:
+
+client/: This folder will contain the code for your chatbot's client-side interface.
+
+ai.py: This file is where you'll implement the core AI logic for your chatbot.
+
+server.py: This file will house the server-side code to handle requests and interact with the AI.
+
+.env: This file will store your environment variables, including your API key.
+
+Getting Started:
+Follow these steps to set up your development environment:
+
+Create a Virtual Environment:
+It's highly recommended to use a virtual environment to manage your project's dependencies. Open your terminal or command prompt in the root directory of this project and run:
+
+python -m venv venv
+
+Activate Your Virtual Environment:
+
+On Windows:
+
+.\venv\Scripts\activate
+
+On macOS/Linux:
+
+source venv/bin/activate
+
+Install Required Packages:
+With your virtual environment activated, install all necessary Python packages by running:
+
+pip install -r requirements.txt
+
+Obtain an API Key from OpenRouter:
+We will be utilizing the OpenRouter platform for accessing various large language models. You'll need an API key to authenticate your requests.
+
+Visit OpenRouter
+
+Sign up or log in.
+
+Navigate to your API Keys section (usually found in your account settings or dashboard).
+
+Generate a new API key.
+
+Configure Your API Key in .env:
+Once you have your API key, open the .env file in your project's root directory and add the following line, replacing YOUR_API_KEY_HERE with the key you obtained from OpenRouter:
+
+API_KEY=YOUR_API_KEY_HERE
+
+For this project, we aim to use any of the freely available models provided by OpenRouter to keep things simple and cost-effective during development.
+
+Goal:
+The primary goal of this project is to guide you in creating a functional AI chatbot. You'll learn how to connect your client to a server, integrate with an AI service, and build a conversational agent.
+
+You are now ready to start developing your chatbot!
