@@ -1,5 +1,5 @@
 #!/bin/sh
-'''exec' "/Users/tommy/Desktop/WEB DEVELOPMENT PROJECTS/quick_chat_bot_starter/venv/bin/python3.11" "$0" "$@"
+'''exec' "/Users/tommy/Desktop/WEB DEVELOPMENT PROJECTS/portfolio-chatbot/venv/bin/python3.11" "$0" "$@"
 ' '''
 # -*- coding: utf-8 -*-
 import re
