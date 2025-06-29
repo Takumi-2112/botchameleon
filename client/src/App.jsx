@@ -1,6 +1,7 @@
 import { useState } from "react";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
 
 function App() {
   const [messages, setMessages] = useState([
@@ -91,6 +92,7 @@ function App() {
           <button type="submit">Send</button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }

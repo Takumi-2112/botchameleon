@@ -100,21 +100,22 @@
 }
 
 .chat-input button {
-  background: linear-gradient(135deg, #00ed4b, #ffd900);
-  border: none;
-  border-radius: 8px;
+  background-color: #00ed4b;
+  border: 3px solid #00ed4b;
+  border-radius: 10px;
   padding: 0.8rem 1.5rem;
   font-size: 1rem;
   font-weight: bold;
-  font-family: "Orbitron", sans-serif;
-  color: #000;
+  font-family: "Roboto", sans-serif;  
+  color: #000000;
   cursor: pointer;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  transition: transform 0.2s ease;
 }
 
 .chat-input button:hover {
   transform: scale(1.05);
-  box-shadow: 0 0 10px #00ed4b;
+  background-color:  #2a2a2a2a;
+  color: #00ed4b;
 }
 
 @keyframes fadeIn {
