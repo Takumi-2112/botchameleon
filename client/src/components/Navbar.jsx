@@ -116,17 +116,17 @@ export default function Navbar({
                 value={character}
                 onChange={(e) => setCharacter(e.target.value)}
               >
-                <option value="botchameleon">BotChameleon</option>
-                <option value="bender">Bender</option>
-                <option value="pirate">Pirate</option>
-                <option value="shakespeare">Shakespeare</option>
-                <option value="mario">Mario</option>
-                <option value="snoop">Snoop Dogg</option>
-                <option value="trump">Donald Trump</option>
-                <option value="yoda">Yoda</option>
-                <option value="rick">Rick Sanchez</option>
-                <option value="ye">Kanye West</option>
-                <option value="borat">Borat</option>
+                <option onClick={toggleMenu} value="botchameleon">BotChameleon</option>
+                <option onClick={toggleMenu} value="bender">Bender</option>
+                <option onClick={toggleMenu} value="pirate">Pirate</option>
+                <option onClick={toggleMenu} value="shakespeare">Shakespeare</option>
+                <option onClick={toggleMenu} value="mario">Mario</option>
+                <option onClick={toggleMenu} value="snoop">Snoop Dogg</option>
+                <option onClick={toggleMenu} value="trump">Donald Trump</option>
+                <option onClick={toggleMenu} value="yoda">Yoda</option>
+                <option onClick={toggleMenu} value="rick">Rick Sanchez</option>
+                <option onClick={toggleMenu} value="ye">Kanye West</option>
+                <option onClick={toggleMenu} value="borat">Borat</option>
               </select>
             </span>
           </button>
