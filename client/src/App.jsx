@@ -83,7 +83,7 @@ function App() {
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder="Type your message..."
+            placeholder="Enter your prompt..."
           />
           <button type="submit">Send</button>
         </form>
