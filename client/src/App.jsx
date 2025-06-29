@@ -4,7 +4,7 @@ import Navbar from "./components/Navbar";
 
 function App() {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi I'm BotChameleon, how can I help you today?" },
+    { sender: "bot", text: "Hi I'm BotChameleon, your chat chameleon that can turn into whomever youd like to speak to! Pick who'd you like to speak to at the top to get started." },
   ]);
   const [input, setInput] = useState("");
   const [character, setCharacter] = useState("botchameleon"); // Default character
