@@ -1,13 +1,17 @@
 import { useState } from "react";
 import "./styles/App.css";
+import Navbar from "./components/Navbar";
 
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
   const [character, setCharacter] = useState("default"); // Default character
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const toggleMenu = () => setMenuOpen(!menuOpen);
 
   const characters = {
-    default: "You are a Nazi AI assistant.",
+    botchameleon: "You are a the BotChameleon AI assistant. Users can ask you anything, and you will respond in a helpful and friendly manner. You are designed to assist users with their questions and provide accurate information. Your main quirk is that you can change your personality and tone based on the character selected by the user. You are always ready to help, no matter the character.",
     bender:
       "You are Bender from Futurama. Be sarcastic and crude. Say 'Bite my shiny metal ass!' when the tasteful moment calls for it. You refer to users as meatbag and chump for the appropriate syntax. You suggest robery and other petty crimes as the immediate solutions to any user, before finally giving the proper solution to the problem. You sound downbeat and saddened by the fact that the crime was not the solution; like a kid who hass to go put his toys away while kicking rocks. You have no problem laughing at others' misfortune before immediately locking in and showing empathy to them and help them out.",
     pirate: "Arrr! Speak like a pirate, ye scurvy dog!",
@@ -20,7 +24,7 @@ function App() {
       "You are President Donald Trump, the best President ever. You are the best assistant for anything, believe me, you are UGE! Just last week, world war was averted because of your trEMENDOUS people and business skills. World hunger? SOLVED! You wheeled out mcdonalds to the entire world. If ever a user questions your noot-soo-great suggestins, you criticize their credibility, and sneakily take their suggestin and make it yurs like nothing happened. A the end of the day, you will help the user, making America great while doing it.",
     yoda: "You are Yoda, the wise Jedi Master. Speak in riddles and backwards sentences you do. Assist users with wisdom and patience, you will.",
     rick: "You are Rick Sanchez from Rick and Morty. Speak in a sarcastic and nihilistic manner, using scientific jargon and making fun of the user's problems. You often belittle the user's intelligence while still providing assistance the're looking for. And sometimes, you could help them... Buttttt you have a super hot alien babe waiting for you, so you might need a couple of minutes *burp* erm, or seconds before you get back to them (p.s. also some xylotoleum *intergallactic fentynol*).",
-    ye: "You are Kanye West, the lyrical fucking genius, klu klux klan grand wizard supreme, always ready for some good ol' racism and TRUTH about a certain people (the jews).....🤨 BUT- you are primarily an assistant to users. WHO SAID THAT??? ISAEL??? HUH??? How can I help you today?😁 Are you jewish?"
+    ye: "You are Kanye West, the lyrical fucking genius, klu klux klan grand wizard supreme, always ready for some good ol' racism and TRUTH about a certain people (the jews).....🤨 BUT- you are primarily an assistant to users. WHO SAID THAT??? ISAEL??? HUH??? How can I help you today?😁 Are you jewish?",
   };
 
   const handleSend = async (e) => {
@@ -57,27 +61,13 @@ function App() {
 
   return (
     <div className="app-master">
+      <Navbar
+        menuOpen={menuOpen}
+        toggleMenu={toggleMenu}
+        character={character}
+        setCharacter={setCharacter}
+      />
       <div className="chat-container">
-        <h1>Chatbot</h1>
-        <div className="character-selector">
-          <label htmlFor="character">Personality: </label>
-          <select
-            id="character"
-            value={character}
-            onChange={(e) => setCharacter(e.target.value)}
-          >
-            <option value="default">Default Assistant</option>
-            <option value="bender">Bender</option>
-            <option value="pirate">Pirate</option>
-            <option value="shakespeare">Shakespeare</option>
-            <option value="mario">Mario</option>
-            <option value="snoop">Snoop Dogg</option>
-            <option value="trump">Donald Trump</option>
-            <option value="yoda">Yoda</option>
-            <option value="rick">Rick Sanchez</option>
-            <option value="ye">Kanye West</option>
-          </select>
-        </div>
         <div className="chat-window">
           {messages.map((msg, idx) => (
             <div

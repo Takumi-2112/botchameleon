@@ -11,7 +11,7 @@ def message():
     data = request.get_json()
 
     user_message = data.get('message', '')
-    character = data.get('character', 'default')  # Fallback to "default" if none provided
+    character = data.get('character', 'botchameleon')  # Fallback to "botchameleon" if none provided
 
     if not user_message:
         return jsonify({"error": "No message provided"}), 400
