@@ -57,7 +57,7 @@
   width: 25%;
 }
 
-.navbar-img {
+.navbar-img-desk {
   width: 100%;
 }
 
@@ -155,54 +155,37 @@
   width: 100%;
   filter: drop-shadow(0 0 5px #ffffff);
 }
-/* Hamburger Icon */
-.hamburger {
+
+.mobile-toggle {
   display: none;
-  flex-direction: column;
-  justify-content: space-between;
-  width: 30px;
-  height: 22px;
   cursor: pointer;
-  margin: 5% 5% 5% 0;
-  z-index: 1001;
 }
 
-.bar {
+.mobile-toggle-img {
   width: 100%;
-  height: 4px;
-  background-color: white;
-  transition: all 0.3s ease;
-  border-radius: 2px;
-  transform-origin: center;
-}
-
-.bar .open {
-  filter: blur(15px);
-}
-
-/* Animate hamburger when open */
-.bar.open:nth-child(1) {
-  transform: rotate(45deg) translate(4.5px, 8px);
-}
-
-.bar.open:nth-child(2) {
-  opacity: 0;
-}
-
-.bar.open:nth-child(3) {
-  transform: rotate(-45deg) translate(4.5px, -8px);
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 0 5px #00ed4b);
 }
 
 /* Mobile Styles */
 @media (max-width: 768px) {
   .master-navbar {
     padding: 9% 2%;
+    min-height: 400px;
   }
+
   .nav-logo {
+    display: none;
     margin-bottom: 2%;
     font-size: 1.3rem;
     font-weight: 600;
   }
+
+  .navbar-img-desk {
+    display: none;
+  }
+
   .nav-links {
     position: absolute;
     top: 60px;
@@ -235,8 +218,17 @@
     opacity: 1;
   }
 
-  .hamburger {
-    display: flex;
+ .mobile-toggle {
+    display: block;
+    width: 20%;
+  }
+
+  .nav-face{
+    display: none;
+  }
+
+  .navbar-title {
+    width: auto;
   }
 
   .nav-button {

@@ -1,19 +1,14 @@
 from flask import Flask, request, jsonify, send_from_directory
 from flask_cors import CORS
 import os
-from ai import ai_setup
+from ai import ai_setup  # Your AI function
 
-app = Flask(__name__, static_folder='client/dist', static_url_path='')
+app = Flask(__name__)
 CORS(app)
 
 @app.route('/')
 def home():
-    # Serve React app index.html or simple message if no frontend built
-    index_path = os.path.join(app.static_folder, 'index.html')
-    if os.path.exists(index_path):
-        return send_from_directory(app.static_folder, 'index.html')
-    else:
-        return "Botchameleon API is running"
+  return "Botchameleon API is running"
 
 @app.route('/message', methods=['POST'])
 def message():
@@ -35,4 +30,5 @@ def message():
     return jsonify(response)
 
 if __name__ == '__main__':
-    app.run()
+    # app.run()
+    app.run(debug=True, host='', port=5000)  # Run on all interfaces for local testing

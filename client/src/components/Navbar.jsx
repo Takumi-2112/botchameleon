@@ -9,7 +9,7 @@ import trumpLogo from "../assets/donald.png";
 import yodaLogo from "../assets/yoda.png";
 import rickLogo from "../assets/rick.png";
 import yeLogo from "../assets/ye.png";
-import boratLogo from "../assets/borat.png"
+import boratLogo from "../assets/borat.png";
 
 export default function Navbar({
   menuOpen,
@@ -24,17 +24,87 @@ export default function Navbar({
           <div className="navbar-logo">
             <img
               src={botChameleleonLogo}
-              className="navbar-img"
+              className="navbar-img-desk"
               alt="BotChameleon Logo"
             />
           </div>
           <h1>BotChameleon</h1>
         </div>
-        {/* Hamburger icon */}
-        <div className="hamburger" onClick={toggleMenu}>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
-          <div className={`bar ${menuOpen ? "open" : ""}`}></div>
+        {/* Mobile toggle image (replaces hamburger on small screens) */}
+        <div className="mobile-toggle" onClick={toggleMenu}>
+          {character === "botchameleon" && (
+            <img
+              src={botChameleleonLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "bender" && (
+            <img
+              src={benderLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "pirate" && (
+            <img
+              src={pirateLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "shakespeare" && (
+            <img
+              src={shakespeareLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "mario" && (
+            <img
+              src={marioLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "snoop" && (
+            <img
+              src={snoopLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "trump" && (
+            <img
+              src={trumpLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "yoda" && (
+            <img
+              src={yodaLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "rick" && (
+            <img
+              src={rickLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
+          {character === "ye" && (
+            <img src={yeLogo} alt="Toggle Menu" className="mobile-toggle-img" />
+          )}
+          {character === "borat" && (
+            <img
+              src={boratLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
         </div>
 
         <div className={`nav-links ${menuOpen ? "show" : ""}`}>
@@ -62,38 +132,42 @@ export default function Navbar({
           </button>
           <div className="nav-face">
             {character === "bender" && (
-              <img src={benderLogo} alt="Bender" className="nav-img" />
+              <img src={benderLogo} alt="Bender" className="nav-img-desk" />
             )}
             {character === "pirate" && (
-              <img src={pirateLogo} alt="Pirate" className="nav-img" />
+              <img src={pirateLogo} alt="Pirate" className="nav-img-desk" />
             )}
             {character === "shakespeare" && (
               <img
                 src={shakespeareLogo}
                 alt="Shakespeare"
-                className="nav-img"
+                className="nav-img-desk"
               />
             )}
             {character === "mario" && (
-              <img src={marioLogo} alt="Mario" className="nav-img" />
+              <img src={marioLogo} alt="Mario" className="nav-img-desk" />
             )}
             {character === "snoop" && (
-              <img src={snoopLogo} alt="Snoop Dogg" className="nav-img" />
+              <img src={snoopLogo} alt="Snoop Dogg" className="nav-img-desk" />
             )}
             {character === "trump" && (
-              <img src={trumpLogo} alt="Donald Trump" className="nav-img" />
+              <img
+                src={trumpLogo}
+                alt="Donald Trump"
+                className="nav-img-desk"
+              />
             )}
             {character === "yoda" && (
-              <img src={yodaLogo} alt="Yoda" className="nav-img" />
+              <img src={yodaLogo} alt="Yoda" className="nav-img-desk" />
             )}
             {character === "rick" && (
-              <img src={rickLogo} alt="Rick Sanchez" className="nav-img" />
+              <img src={rickLogo} alt="Rick Sanchez" className="nav-img-desk" />
             )}
             {character === "ye" && (
-              <img src={yeLogo} alt="Kanye West" className="nav-img" />
+              <img src={yeLogo} alt="Kanye West" className="nav-img-desk" />
             )}
             {character === "borat" && (
-              <img src={boratLogo} alt="Borat" className="nav-img" />
+              <img src={boratLogo} alt="Borat" className="nav-img-desk" />
             )}
           </div>
         </div>
