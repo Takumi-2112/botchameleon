@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState("");
-  const [character, setCharacter] = useState("default"); // Default character
+  const [character, setCharacter] = useState("botchameleon"); // Default character
   const [menuOpen, setMenuOpen] = useState(false);
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
