@@ -125,7 +125,7 @@ export default function Navbar({
                 <option onClick={toggleMenu} value="trump">Donald Trump</option>
                 <option onClick={toggleMenu} value="yoda">Yoda</option>
                 <option onClick={toggleMenu} value="rick">Rick Sanchez</option>
-                <option onClick={toggleMenu} value="ye">Kanye West</option>
+                {/* <option onClick={toggleMenu} value="ye">Kanye West</option> */}
                 <option onClick={toggleMenu} value="borat">Borat</option>
               </select>
             </span>
