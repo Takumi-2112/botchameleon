@@ -9,6 +9,7 @@ import trumpLogo from "../assets/donald.png";
 import yodaLogo from "../assets/yoda.png";
 import rickLogo from "../assets/rick.png";
 import yeLogo from "../assets/ye.png";
+import boratLogo from "../assets/borat.png"
 
 export default function Navbar({
   menuOpen,
@@ -55,6 +56,7 @@ export default function Navbar({
                 <option value="yoda">Yoda</option>
                 <option value="rick">Rick Sanchez</option>
                 <option value="ye">Kanye West</option>
+                <option value="borat">Borat</option>
               </select>
             </span>
           </button>
@@ -89,6 +91,9 @@ export default function Navbar({
             )}
             {character === "ye" && (
               <img src={yeLogo} alt="Kanye West" className="nav-img" />
+            )}
+            {character === "borat" && (
+              <img src={boratLogo} alt="Borat" className="nav-img" />
             )}
           </div>
         </div>
