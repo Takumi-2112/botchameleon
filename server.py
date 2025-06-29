@@ -1,10 +1,19 @@
-from flask import Flask, request, jsonify
-from flask_cors import CORS 
-from ai import ai_setup  # Make sure this imports your character-aware AI function
+from flask import Flask, request, jsonify, send_from_directory
+from flask_cors import CORS
+import os
+from ai import ai_setup
 
-# Initialize Flask app
-app = Flask(__name__)
-CORS(app)  # Enable CORS for cross-origin requests
+app = Flask(__name__, static_folder='client/dist', static_url_path='')
+CORS(app)
+
+@app.route('/')
+def home():
+    # Serve React app index.html or simple message if no frontend built
+    index_path = os.path.join(app.static_folder, 'index.html')
+    if os.path.exists(index_path):
+        return send_from_directory(app.static_folder, 'index.html')
+    else:
+        return "Botchameleon API is running"
 
 @app.route('/message', methods=['POST'])
 def message():
