@@ -12,7 +12,7 @@
   background-color: #1c1c1c;
   color: white;
   font-family: "Orbitron", sans-serif;
-  border-bottom: solid 5px #d2b200;
+  border-bottom: solid 5px #00ed4b;
 }
 
 .navbar-content {
@@ -62,12 +62,11 @@
 }
 
 .nav-links {
-  width: 35%;
+  width: 30%;
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 20px;
-  margin-right: 5%;
 }
 
 #character{
@@ -75,6 +74,17 @@
   color: #ffffff;
   background-color: #1c1c1c;
   border: none;
+  cursor: pointer;
+}
+
+#character:hover {
+  background: none;
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  background-image: linear-gradient(90deg, #00ed4b, #ff007b, #ffd900);
+  background-size: 100% 100%;
 }
 
 #character:focus {
@@ -83,9 +93,9 @@
 
 .nav-button {
   position: relative;
+  display: inline-block; /* <- shrink-wrap the text */
   overflow: hidden;
-  width: 100px;
-  padding: 1% 0 10% 0;
+  padding: 0.5em 1em;
   border: none;
   background-color: inherit;
   color: white;
@@ -94,6 +104,7 @@
   cursor: pointer;
   transition: color 0.3s ease;
   z-index: 1;
+  box-sizing: content-box; /* <- optional: ensure no internal padding forces width */
 }
 
 .nav-button::before {
@@ -105,25 +116,30 @@
   height: 100%;
   transition: left 0.2s ease;
   z-index: 0;
-  filter: drop-shadow(0 0 10px #ffffff);
+  /* filter: drop-shadow(0 0 10px #ffffff); */
 }
 
 .nav-button::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -100%;
+  bottom: 0;
+  left: 0;
   width: 100%;
-  height: 100%;
-  box-sizing: border-box;
-  border-bottom: 5px solid #ffffff;
-  transition: left 0.2s ease;
-  z-index: 1;
+  height: 5px;
+  background-color: #00ed4b;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease;
+  z-index: 0;
 }
 
-.nav-button:hover::before,
+.nav-button:hover::before{
+  left: 0;
+}
+
 .nav-button:hover::after {
   left: 0;
+  transform: scaleX(1);
 }
 
 .nav-button span {
@@ -131,6 +147,14 @@
   z-index: 2;
 }
 
+.nav-face{
+  width: 185px;
+}
+
+.nav-face img {
+  width: 100%;
+  filter: drop-shadow(0 0 10px #ffffff);
+}
 /* Hamburger Icon */
 .hamburger {
   display: none;
