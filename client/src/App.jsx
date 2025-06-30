@@ -5,7 +5,7 @@ import Footer from "./components/Footer";
 
 function App() {
   const [messages, setMessages] = useState([
-    { sender: "bot", text: "Hi I'm BotChameleon, your chat chameleon that can turn into whomever youd like to speak to! Click my face att the top to pick who'd you like to speak to!" },
+    { sender: "bot", text: "Hi I'm BotChameleon, your chat chameleon that can turn into whomever youd like to speak to! Click my face at the top to pick who'd you like to speak to!" },
   ]);
   const [input, setInput] = useState("");
   const [character, setCharacter] = useState("botchameleon"); // Default character
