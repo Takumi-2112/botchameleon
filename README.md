@@ -1,4 +1,4 @@
-# 🦎 BotChameleon
+# BotChameleon
 
 **Your AI Chat Companion That Transforms Into Anyone**
 
@@ -83,7 +83,6 @@ botchameleon/
 1. **Clone the repository**
    ```bash
    git clone <your-repo-url>
-   cd botchameleon/backend
    ```
 
 2. **Install Python dependencies**
@@ -107,7 +106,7 @@ botchameleon/
 
 1. **Navigate to frontend directory**
    ```bash
-   cd ../frontend
+   cd ../client
    ```
 
 2. **Install dependencies**
@@ -129,60 +128,19 @@ The application uses OpenRouter API with Mistral AI model. You'll need to:
 2. Get your API key
 3. Add it to your `.env` file
 
-### Character Customization
-Characters are defined in `ai.py`. To add or modify characters:
-1. Add your character to the `CHARACTERS` dictionary
-2. Update the frontend `characters` object in `App.jsx`
-3. Add character selection option in the Navbar component
-
 ## 🌐 Deployment
 
 The application is deployed on Render with automatic deployments from the main branch.
 
 ### Environment Variables (Production)
-- `API_KEY`: Your OpenRouter API key
+- Ensure to create and generate your own keys
 
 ## 🎯 How It Works
 
 1. **Session Management**: Each user gets a unique session ID for tracking conversations
 2. **Context Preservation**: All messages are stored in context history that persists across character switches
 3. **Character Switching**: When switching characters, the AI receives system instructions about the change while maintaining conversation memory
-4. **Smart Context Limiting**: Conversations are limited to the last 30 exchanges to prevent token limit issues
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create a feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
-5. Open a Pull Request
-
-## 📝 API Reference
-
-### POST `/message`
-Send a message to the AI
-
-**Request Body:**
-```json
-{
-  "message": "Hello there!",
-  "character": "yoda",
-  "sessionId": "session_abc123_1234567890",
-  "contextHistory": [
-    {"role": "user", "content": "Previous message"},
-    {"role": "assistant", "content": "Previous response"}
-  ]
-}
-```
-
-**Response:**
-```json
-{
-  "reply": "Message received!",
-  "data": "Hello there, young padawan! How help you, can I?",
-  "sessionId": "session_abc123_1234567890"
-}
-```
+4. **Smart Context Limiting**: Conversations are limited to the last 30 exchanges to prevent token limit issue
 
 ## 🚨 Content Warning
 
@@ -206,6 +164,4 @@ This project is licensed under the MIT License - see the LICENSE file for detail
 
 ---
 
-**Made with ❤️ by [Your Name]**
-
-*Transform your conversations, one character at a time! 🦎✨*
+**Made with ❤️ by Thomas Azran**
