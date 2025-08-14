@@ -142,11 +142,11 @@ function App() {
       </div>
       <Footer />
       
-      {/* Debug info - remove in production */}
+      {/* Debug info - remove in production
       <div style={{position: 'fixed', bottom: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', color: 'white', padding: '5px', fontSize: '10px'}}>
         Session: {sessionId}<br/>
         Context Length: {contextHistory.length}
-      </div>
+      </div> */}
     </div>
   );
 }
