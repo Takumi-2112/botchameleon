@@ -153,7 +153,7 @@ The application is deployed on Render with automatic deployments from the main b
 3. **Character Switching**: When switching characters, the AI receives system instructions about the change while maintaining conversation memory
 4. **Smart Context Limiting**: Conversations are limited to the last 30 exchanges to prevent token limit issue
 
-## 🚨 Content Warning
+## 🚨 Content Warning 18+
 
 This application contains character impersonations that may include:
 - Strong language and adult humor
