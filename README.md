@@ -117,7 +117,7 @@ botchameleon/
 
 1. **Navigate to frontend directory**
    ```bash
-   cd ../client
+   cd client
    ```
 
 2. **Install dependencies**
