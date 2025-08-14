@@ -78,8 +78,7 @@
   width: 100%;
   max-width: 900px;
   display: flex;
-  margin-top: 1rem;
-  padding-top: 1rem;
+  margin: 3% 0;
   gap: 0.5rem;
   flex-shrink: 0; /* Prevents input from shrinking */
 }
