@@ -148,7 +148,7 @@
 }
 
 .nav-face {
-  width: 185px;
+  width: 30%
 }
 
 .nav-face img {
@@ -279,7 +279,7 @@
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
-    margin: 8.5% 0 0 0;
+    margin: 4% 0 0 0;
     padding: 25px 0;
     gap: 10px;
     visibility: hidden;
