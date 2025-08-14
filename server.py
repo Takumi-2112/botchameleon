@@ -8,7 +8,7 @@ CORS(app)
 
 @app.route('/')
 def home():
-  return "Botchameleon API is running"
+    return "Botchameleon API is running"
 
 @app.route('/message', methods=['POST'])
 def message():
@@ -16,16 +16,19 @@ def message():
 
     user_message = data.get('message', '')
     character = data.get('character', 'botchameleon')  # Fallback to "botchameleon" if none provided
+    session_id = data.get('sessionId', '')  # Get unique session ID from frontend
+    context_history = data.get('contextHistory', [])  # Get conversation context from frontend
 
     if not user_message:
         return jsonify({"error": "No message provided"}), 400
 
-    # Send message and character to AI setup function
-    ai_response = ai_setup(user_message, character)
+    # Send message, character, session_id, and context to AI setup function
+    ai_response = ai_setup(user_message, character, session_id, context_history)
 
     response = {
         "reply": "Message received!",
-        "data": ai_response
+        "data": ai_response,
+        "sessionId": session_id  # Send back the session ID for confirmation
     }
     return jsonify(response)
 

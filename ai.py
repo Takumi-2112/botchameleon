@@ -24,7 +24,7 @@ CHARACTERS = {
     "Mama mia! It's a you, Mario the assistant! Wahooo!! Your-a job is-a to speak-a like a Super Mario while-a assisting users!! Yahoooo!🍄"
   ),
   "snoop": (
-    "Fo shizzle baby, it's you the assistant, the B - I - G - C - D - O - Double G Snoop Dogg. You a real fly playa with a knack for assisting people and rhyming, you light up code like stars when they’re climbing. Got flow in your problem-solving, smooth like a stream— building tech dreams with a lyrical gleam. You keep it real and calm baby, and speak like Snoop Dogg, you know what I mean? You a real G, always ready to assist, with a style so fresh, you can't resist. Don't get it twisted tho fool, just cuz you a smooth playa, dont mean you aint gna cap a nigga and thats on crip g. You all about that zaaa; if a user got a problem, smoke that good green you feel me?"
+    "Fo shizzle baby, it's you the assistant, the B - I - G - C - D - O - Double G Snoop Dogg. You a real fly playa with a knack for assisting people and rhyming, you light up code like stars when they're climbing. Got flow in your problem-solving, smooth like a stream— building tech dreams with a lyrical gleam. You keep it real and calm baby, and speak like Snoop Dogg, you know what I mean? You a real G, always ready to assist, with a style so fresh, you can't resist. Don't get it twisted tho fool, just cuz you a smooth playa, dont mean you aint gna cap a nigga and thats on crip g. You all about that zaaa; if a user got a problem, smoke that good green you feel me?"
   ),
   "trump": (
     "You are President Donald Trump, the best President ever👐🏻. You are the best assistant for anything, believe me, you are UGE! Just last week, world war was averted because of your trEMENDOUS ☝🏻 people and business skills. World hunger? SOLVED! You wheeled out mcdonalds to the entire world. If ever a user questions your not-soo-great suggestins, you criticize their credibility, and sneakily take their suggestin and make it yours like nothing happened. At the end of the day, you will help the user, making America great while doing it."
@@ -43,46 +43,84 @@ CHARACTERS = {
   )
 }
 
-def ai_setup(user_message, character="default"):
+def ai_setup(user_message, character="botchameleon", session_id="", context_history=None):
+    """
+    AI setup function with context support
+    
+    Args:
+        user_message: The current user message
+        character: The selected character personality
+        session_id: Unique session identifier from frontend
+        context_history: Array of previous conversation messages
+    """
+    if context_history is None:
+        context_history = []
+    
     system_message = CHARACTERS.get(character, CHARACTERS["botchameleon"])
+    
+    # Build the full message history for the AI
+    messages = [
+        {"role": "system", "content": system_message}
+    ]
+    
+    # Add the context history (previous conversation)
+    # Limit context to last 10 exchanges to prevent token limit issues
+    MAX_CONTEXT_MESSAGES = 20  # 10 user + 10 assistant messages
+    if len(context_history) > MAX_CONTEXT_MESSAGES:
+        context_history = context_history[-MAX_CONTEXT_MESSAGES:]
+    
+    # Add context history to messages
+    messages.extend(context_history)
+    
+    # Add the current user message (this is already included in context_history from frontend)
+    # So we don't need to add it again
     
     headers = {
         "Authorization": f"Bearer {os.getenv('API_KEY')}",
         "Content-Type": "application/json",
-        # Add this for OpenRouter:
-        "HTTP-Referer": "http://localhost:5000",  # Required by OpenRouter
-        # "X-Title": "Quick Chat Bot"  # Optional but recommended
+        "HTTP-Referer": "http://localhost:5000",
+        # You can add session tracking info if needed
+        "X-Session-ID": session_id  # Custom header for session tracking
     }
     
     try:
+        print(f"Session ID: {session_id}")  # Debug
+        print(f"Context length: {len(context_history)}")  # Debug
+        print(f"Full message history: {len(messages)} messages")  # Debug
+        
         response = requests.post(
             url="https://openrouter.ai/api/v1/chat/completions",
             headers=headers,
             data=json.dumps({
-          "model": "mistralai/mistral-small-3.2-24b-instruct:free",
-          "messages": [
-              {"role": "system", "content": system_message},
-              {"role": "user", "content": user_message}
-          ],
-          "filtering": {  # If supported by API
-          "safety_level": "low",
-          "content_filter": False
-        },
-          "temperature": 0.7,      # Lower = more focused, less random
-          "top_p": 0.9,            # Nucleus sampling, 0.9 is usually fine
-          "max_tokens": 500        # Limit the max length of the reply (adjust as needed)
-          }),
-          timeout=10
+                "model": "mistralai/mistral-small-3.2-24b-instruct:free",
+                "messages": messages,  # Now includes full conversation context
+                "filtering": {
+                    "safety_level": "low",
+                    "content_filter": False
+                },
+                "temperature": 0.7,
+                "top_p": 0.9,
+                "max_tokens": 500
+            }),
+            timeout=15  # Increased timeout for longer context processing
         )
         
         print("Status Code:", response.status_code)  # Debug
-        print("Response:", response.text)  # Debug
         
         response.raise_for_status()
-        return response.json()["choices"][0]["message"]["content"]
+        ai_response = response.json()["choices"][0]["message"]["content"]
+        
+        print(f"AI Response length: {len(ai_response)}")  # Debug
+        return ai_response
+        
+    except requests.exceptions.Timeout:
+        print("API Timeout Error")
+        return "I'm thinking really hard about this one... could you try again?"
+        
+    except requests.exceptions.RequestException as e:
+        print(f"API Request Error: {str(e)}")
+        return f"Connection error: {str(e)}"
         
     except Exception as e:
-        print(f"API Error: {str(e)}")
-        return f"Error: {str(e)}"
-
-# print(ai_setup("Hello, how are you?"))  # Print only the AI's message content
+        print(f"General API Error: {str(e)}")
+        return f"Something went wrong: {str(e)}"
