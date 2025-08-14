@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
@@ -16,6 +16,16 @@ function App() {
   
   // Generate a unique session ID when the component mounts
   const [sessionId, setSessionId] = useState("");
+  
+  // Ref for chat window to handle auto-scroll
+  const chatWindowRef = useRef(null);
+
+  // Auto-scroll to bottom whenever messages change
+  useEffect(() => {
+    if (chatWindowRef.current) {
+      chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
+    }
+  }, [messages]);
 
   // Generate session ID on component mount
   useEffect(() => {
@@ -110,7 +120,7 @@ function App() {
         setCharacter={setCharacter}
       />
       <div className="chat-container">
-        <div className="chat-window">
+        <div className="chat-window" ref={chatWindowRef}>
           {messages.map((msg, idx) => (
             <div
               key={idx}
