@@ -331,22 +331,45 @@
 
 /* Tablets */
 @media (min-width: 768px) and (max-width: 1023px) {
-  
+  .nav-face{
+    width: 45%;
+  }
 }
 
 /* Laptops */
 @media (min-width: 1024px) and (max-width: 1199px) {
-  
+  .navbar-title{
+    width: 35%;
+  }
+  .navbar-logo {
+  width: 20%;
+}
 }
 
 /* Desktops */
 @media (min-width: 1200px) and (max-width: 1599px) {
-  
+  .nav-links{
+  width: 25%;
+}
+
+.nav-face {
+  width: 35%
+}
 }
 
 /* Large desktops / 4K */
 @media (min-width: 1600px) {
-  
+  .navbar-logo {
+  width: 20%;
+}
+
+.nav-links{
+  width: 20%;
+}
+
+.nav-face {
+  width: 35%
+}
 }
 
 
