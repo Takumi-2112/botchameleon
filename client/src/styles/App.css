@@ -209,6 +209,12 @@
 /* Large desktops / 4K */
 @media (min-width: 1600px) {
   .chat-window {
+    min-width: 80%;
     max-height: 75vh;
+  }
+
+  .chat-container {
+    margin: 7% 0 0 0;;
+    width: 65%;
   }
 }
