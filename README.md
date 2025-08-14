@@ -31,7 +31,7 @@ BotChameleon is an interactive AI chatbot application that allows users to switc
 Visit the live application at: `https://botchameleon.netlify.app/`
 
 ### The home page
-![Home Page](client/src/assets/home.png)
+![Home Page](client/src/assets/home-page.png)
 
 ### Conversations
 
