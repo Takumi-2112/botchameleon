@@ -141,7 +141,7 @@ The application uses OpenRouter API with Mistral AI model. You'll need to:
 
 ## 🌐 Deployment
 
-The application is deployed on Render with automatic deployments from the main branch.
+The application's frontend is deployed on Netlify & the backend is deployed on Render, both with automatic deployments from the main branch.
 
 ### Environment Variables (Production)
 - Ensure to create and generate your own keys
