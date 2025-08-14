@@ -37,13 +37,16 @@ function App() {
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
-  // When character changes, reset context but keep the welcome message
+  // When character changes, add a system message to context but DON'T clear history
   useEffect(() => {
-    if (character) {
-      setContextHistory([]); // Clear context when switching characters
-      setMessages([
-        { sender: "bot", text: "Hi I'm BotChameleon, your chat chameleon that can turn into whomever youd like to speak to! Click my face at the top to pick who'd you like to speak to!" },
-      ]);
+    if (character && contextHistory.length > 0) {
+      // Add a system message to context to inform the AI about the character switch
+      // (No visible message to user)
+      const systemSwitchContext = {
+        role: "system",
+        content: `The user has switched to character: ${character}. You should now respond as this character while being aware of the previous conversation context.`
+      };
+      setContextHistory(prev => [...prev, systemSwitchContext]);
     }
   }, [character]);
 
@@ -111,6 +114,14 @@ function App() {
     }
   };
 
+  // Optional: Add a function to clear context if needed
+  const clearContext = () => {
+    setContextHistory([]);
+    setMessages([
+      { sender: "bot", text: "Context cleared! Starting fresh conversation." }
+    ]);
+  };
+
   return (
     <div className="app-master">
       <Navbar
@@ -145,7 +156,8 @@ function App() {
       {/* Debug info - remove in production
       <div style={{position: 'fixed', bottom: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', color: 'white', padding: '5px', fontSize: '10px'}}>
         Session: {sessionId}<br/>
-        Context Length: {contextHistory.length}
+        Context Length: {contextHistory.length}<br/>
+        Current Character: {character}
       </div> */}
     </div>
   );

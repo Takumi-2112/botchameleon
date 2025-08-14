@@ -107,7 +107,7 @@
   font-size: 1rem;
   font-weight: bold;
   font-family: "Roboto", sans-serif;  
-  color: #000000;
+  color: #333;
   cursor: pointer;
   transition: transform 0.2s ease;
 }
