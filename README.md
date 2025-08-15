@@ -6,19 +6,23 @@ BotChameleon is an interactive AI chatbot application that allows users to switc
 
 ## ✨ Features
 
-- **Multiple AI Personalities**: Switch between 11+ unique characters including:
-  - 🤖 **BotChameleon** - The helpful default assistant
-  - 🛸 **Bender** - Sarcastic robot from Futurama
-  - 🏴‍☠️ **Pirate** - Swashbuckling sea dog (Jack Sparrow style)
-  - 📜 **Shakespeare** - The eloquent Bard himself
-  - 🍄 **Mario** - Everyone's favorite plumber
-  - 🎤 **Snoop Dogg** - Smooth-talking rap legend
-  - 🇺🇸 **Donald Trump** - The tremendous former president
-  - 🗡️ **Yoda** - Wise Jedi Master
-  - 🔬 **Rick Sanchez** - Nihilistic scientist from Rick & Morty
-  - 🎭 **Kanye West** - Controversial rap genius
-  - 🇰🇿 **Borat** - Kazakh reporter
-  - **More Characters To Come!**
+- **Multiple AI Personalities**: Switch between 10+ unique characters including:
+  - **BotChameleon** - The helpful default assistant
+  - **Bender** - Sarcastic robot from Futurama
+  - **Pirate** - Swashbuckling sea dog (Jack Sparrow style)
+  - **Shakespeare** - The eloquent Bard himself
+  - **Mario** - Everyone's favorite plumber
+  - **Snoop Dogg** - Smooth-talking rap legend
+  - **Donald Trump** - The tremendous former president
+  - **Yoda** - Wise Jedi Master
+  - **Rick Sanchez** - Nihilistic scientist from Rick & Morty
+  - **Kanye West** - Controversial rap genius
+  - **Borat** - Kazakh reporter
+  - **Uncle Ruckus** - Famed Controversial Boondocks Character
+  - **Kevin O'Leary** - Most Dangerous Shark in The Tank
+  - **Jerry Seinfeld** - Comedian From the Famous Show
+  - **Ru Paul** - The Baddest Queen
+  - **More Chaaracters To Come!**
 
 - **Persistent Context**: Characters remember previous conversations even when you switch between them
 - **Real-time Chat**: Instant responses with auto-scrolling chat interface
