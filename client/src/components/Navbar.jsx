@@ -151,7 +151,7 @@ export default function Navbar({
                 <option onClick={toggleMenu} value="rick">Rick Sanchez</option>
                 <option onClick={toggleMenu} value="ye">Kanye West</option>
                 <option onClick={toggleMenu} value="borat">Borat</option>
-                <option onClick={toggleMenu} value="random">Uncle Ruckus</option>
+                <option onClick={toggleMenu} value="ruckus">Uncle Ruckus</option>
                 <option onClick={toggleMenu} value="kevin">Kevin O'Leary</option>
                 <option onClick={toggleMenu} value="jerry">Jerry Seinfeld</option>
               </select>
