@@ -187,7 +187,7 @@ function App() {
             disabled={isTyping} // Disable input while typing
           />
           <button type="submit" disabled={isTyping}>
-            {isTyping ? "..." : "Send"}
+            Send
           </button>
         </form>
       </div>
