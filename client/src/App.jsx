@@ -11,6 +11,7 @@ function App() {
   const [character, setCharacter] = useState("botchameleon");
   const [menuOpen, setMenuOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false); // Add typing state
+  const [typingText, setTypingText] = useState("Botchameleon is typing."); // Typing text state
   
   // Context history for the AI - stores the conversation history
   const [contextHistory, setContextHistory] = useState([]);
@@ -27,6 +28,28 @@ function App() {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
   }, [messages, isTyping]); // Added isTyping to dependency array
+
+  // Handle typing animation
+  useEffect(() => {
+    let interval;
+    if (isTyping) {
+      const typingStates = [
+        "Botchameleon is typing.",
+        "Botchameleon is typing..",
+        "Botchameleon is typing..."
+      ];
+      let index = 0;
+      
+      interval = setInterval(() => {
+        setTypingText(typingStates[index]);
+        index = (index + 1) % typingStates.length;
+      }, 500); // Change every 500ms
+    }
+    
+    return () => {
+      if (interval) clearInterval(interval);
+    };
+  }, [isTyping]);
 
   // Generate session ID on component mount
   useEffect(() => {
@@ -82,7 +105,7 @@ function App() {
     setContextHistory(updatedContext);
     
     setInput("");
-    setIsTyping(true); 
+    setIsTyping(true); // Start typing indicator
 
     try {
       const res = await fetch("https://botchameleon.onrender.com/message", {
@@ -118,7 +141,7 @@ function App() {
       // Add error to context as well
       setContextHistory(prev => [...prev, { role: "assistant", content: errorMessage }]);
     } finally {
-      setIsTyping(false); 
+      setIsTyping(false); // Stop typing indicator
     }
   };
 
@@ -151,9 +174,7 @@ function App() {
           {/* Typing indicator */}
           {isTyping && (
             <div className="message bot typing-indicator">
-              <span>
-                Botchameleon is typing...
-              </span>
+              <span>{typingText}</span>
             </div>
           )}
         </div>
