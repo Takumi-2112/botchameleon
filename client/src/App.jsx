@@ -12,7 +12,7 @@ function App() {
   const [menuOpen, setMenuOpen] = useState(false);
   const [isTyping, setIsTyping] = useState(false); // Add typing state
   const [typingText, setTypingText] = useState("Botchameleon is typing."); // Typing text state
-  const [showContentWarning, setShowContentWarning] = useState(true); // Content warning state
+  const [showContentWarning, setShowContentWarning] = useState(false); // Start as false
   
   // Context history for the AI - stores the conversation history
   const [contextHistory, setContextHistory] = useState([]);
@@ -52,13 +52,29 @@ function App() {
     };
   }, [isTyping]);
 
-  // Generate session ID on component mount
+  // Generate session ID on component mount and show content warning
   useEffect(() => {
     const generateSessionId = () => {
       return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
     };
     setSessionId(generateSessionId());
-  }, []);
+    
+    // Show content warning alert once per session
+    const userAccepted = window.confirm(
+      "⚠️ CONTENT WARNING ⚠️\n\n" +
+      "This application contains AI characters that may generate mature, offensive, or inappropriate content including strong language, adult humor, and controversial topics.\n\n" +
+      "By clicking OK, you acknowledge that:\n" +
+      "• You are 18+ years of age\n" +
+      "• You understand this is AI-generated content for entertainment\n" +
+      "• You will use this responsibly\n\n" +
+      "Click OK to continue or Cancel to leave."
+    );
+    
+    if (!userAccepted) {
+      // User declined, redirect them away immediately
+      window.location.href = "https://www.google.com";
+    }
+  }, []); // Remove showContentWarning from dependency array
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
