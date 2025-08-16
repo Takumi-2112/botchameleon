@@ -2,6 +2,7 @@ import { useState, useEffect, useRef } from "react";
 import "./styles/App.css";
 import Navbar from "./components/Navbar";
 import Footer from "./components/Footer";
+import ContentWarning from "./components/ContentWarning"; 
 
 function App() {
   const [messages, setMessages] = useState([
@@ -10,9 +11,9 @@ function App() {
   const [input, setInput] = useState("");
   const [character, setCharacter] = useState("botchameleon");
   const [menuOpen, setMenuOpen] = useState(false);
-  const [isTyping, setIsTyping] = useState(false); // Add typing state
-  const [typingText, setTypingText] = useState("Botchameleon is typing."); // Typing text state
-  const [showContentWarning, setShowContentWarning] = useState(false); // Start as false
+  const [isTyping, setIsTyping] = useState(false);
+  const [typingText, setTypingText] = useState("Botchameleon is typing.");
+  const [showContentWarning, setShowContentWarning] = useState(true); // Show modal on load
   
   // Context history for the AI - stores the conversation history
   const [contextHistory, setContextHistory] = useState([]);
@@ -28,7 +29,7 @@ function App() {
     if (chatWindowRef.current) {
       chatWindowRef.current.scrollTop = chatWindowRef.current.scrollHeight;
     }
-  }, [messages, isTyping]); // Added isTyping to dependency array
+  }, [messages, isTyping]);
 
   // Handle typing animation
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
       interval = setInterval(() => {
         setTypingText(typingStates[index]);
         index = (index + 1) % typingStates.length;
-      }, 500); // Change every 500ms
+      }, 500);
     }
     
     return () => {
@@ -52,37 +53,30 @@ function App() {
     };
   }, [isTyping]);
 
-  // Generate session ID on component mount and show content warning
+  // Generate session ID on component mount
   useEffect(() => {
     const generateSessionId = () => {
       return 'session_' + Math.random().toString(36).substr(2, 9) + '_' + Date.now();
     };
     setSessionId(generateSessionId());
-    
-    // Show content warning alert once per session
-    const userAccepted = window.confirm(
-      "⚠️ CONTENT WARNING ⚠️\n\n" +
-      "This application contains AI characters that may generate mature, offensive, or inappropriate content including strong language, adult humor, and controversial topics.\n\n" +
-      "By clicking OK, you acknowledge that:\n" +
-      "• You are 18+ years of age\n" +
-      "• You understand this is AI-generated content for entertainment\n" +
-      "• You will use this responsibly\n\n" +
-      "Click OK to continue or Cancel to leave."
-    );
-    
-    if (!userAccepted) {
-      // User declined, redirect them away immediately
-      window.location.href = "https://www.google.com";
-    }
-  }, []); // Remove showContentWarning from dependency array
+  }, []);
+
+  // Handle content warning accept
+  const handleContentWarningAccept = () => {
+    setShowContentWarning(false);
+  };
+
+  // Handle content warning decline
+  const handleContentWarningDecline = () => {
+    // Redirect user away
+    window.location.href = "https://www.google.com";
+  };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
 
   // When character changes, add a system message to context but DON'T clear history
   useEffect(() => {
     if (character && contextHistory.length > 0) {
-      // Add a system message to context to inform the AI about the character switch
-      // (No visible message to user)
       const systemSwitchContext = {
         role: "system",
         content: `The user has switched to character: ${character}. You should now respond as this character while being aware of the previous conversation context.`
@@ -116,13 +110,12 @@ function App() {
     const userMessage = { sender: "user", text: input };
     setMessages((prev) => [...prev, userMessage]);
     
-    // Add user message to context history
     const newUserContext = { role: "user", content: input };
     const updatedContext = [...contextHistory, newUserContext];
     setContextHistory(updatedContext);
     
     setInput("");
-    setIsTyping(true); // Start typing indicator
+    setIsTyping(true);
 
     try {
       const res = await fetch("https://botchameleon.onrender.com/message", {
@@ -131,8 +124,8 @@ function App() {
         body: JSON.stringify({
           message: input,
           character: character,
-          sessionId: sessionId, // Send unique session ID
-          contextHistory: updatedContext // Send the conversation context
+          sessionId: sessionId,
+          contextHistory: updatedContext
         }),
       });
 
@@ -145,7 +138,6 @@ function App() {
         { sender: "bot", text: botResponse },
       ]);
       
-      // Add bot response to context history
       setContextHistory(prev => [...prev, { role: "assistant", content: botResponse }]);
       
     } catch (err) {
@@ -155,14 +147,12 @@ function App() {
         { sender: "bot", text: errorMessage },
       ]);
       
-      // Add error to context as well
       setContextHistory(prev => [...prev, { role: "assistant", content: errorMessage }]);
     } finally {
-      setIsTyping(false); // Stop typing indicator
+      setIsTyping(false);
     }
   };
 
-  // Optional: Add a function to clear context if needed
   const clearContext = () => {
     setContextHistory([]);
     setMessages([
@@ -172,6 +162,14 @@ function App() {
 
   return (
     <div className="app-master">
+      {/* Show content warning modal if needed */}
+      {showContentWarning && (
+        <ContentWarning 
+          onAccept={handleContentWarningAccept}
+          onDecline={handleContentWarningDecline}
+        />
+      )}
+      
       <Navbar
         menuOpen={menuOpen}
         toggleMenu={toggleMenu}
@@ -188,7 +186,6 @@ function App() {
               <span>{msg.text}</span>
             </div>
           ))}
-          {/* Typing indicator */}
           {isTyping && (
             <div className="message bot typing-indicator">
               <span>{typingText}</span>
@@ -201,7 +198,7 @@ function App() {
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Enter your prompt..."
-            disabled={isTyping} // Disable input while typing
+            disabled={isTyping}
           />
           <button type="submit" disabled={isTyping}>
             {isTyping ? "..." : "Send"}
@@ -209,13 +206,6 @@ function App() {
         </form>
       </div>
       <Footer />
-      
-      {/* Debug info - remove in production
-      <div style={{position: 'fixed', bottom: '10px', right: '10px', background: 'rgba(0,0,0,0.8)', color: 'white', padding: '5px', fontSize: '10px'}}>
-        Session: {sessionId}<br/>
-        Context Length: {contextHistory.length}<br/>
-        Current Character: {character}
-      </div> */}
     </div>
   );
 }
