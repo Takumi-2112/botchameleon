@@ -36,7 +36,7 @@
   padding: 1rem;
   background: #1c1c1c;
   border-radius: 16px;
-  box-shadow: 0 0 20px rgba(0, 237, 75, 0.2);
+  box-shadow: 0 0 20px #00ed4b33;
   overflow-y: auto;
   display: flex;
   flex-direction: column;
@@ -68,7 +68,7 @@
 
 .message.bot {
   align-self: flex-start;
-  background: linear-gradient(135deg, #ffd900, #1c1c1c);
+  background: linear-gradient(135deg, #009eec, #1c1c1c);
   color: white;
   border-bottom-left-radius: 0;
 }
