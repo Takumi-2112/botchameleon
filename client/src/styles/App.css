@@ -68,7 +68,7 @@
 
 .message.bot {
   align-self: flex-start;
-  background: linear-gradient(135deg, #009eec, #1c1c1c);
+  background: linear-gradient(135deg, #ff3366, #1c1c1c);
   color: white;
   border-bottom-left-radius: 0;
 }
