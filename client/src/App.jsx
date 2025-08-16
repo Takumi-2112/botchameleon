@@ -43,7 +43,7 @@ function App() {
       interval = setInterval(() => {
         setTypingText(typingStates[index]);
         index = (index + 1) % typingStates.length;
-      }, 500); // Change every 500ms
+      }, 250); // Change every 250ms
     }
     
     return () => {
