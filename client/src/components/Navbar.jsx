@@ -11,8 +11,9 @@ import rickLogo from "../assets/rick.png";
 import yeLogo from "../assets/ye.png";
 import boratLogo from "../assets/borat.png";
 import ruckusLogo from "../assets/ruckus.png";
-import kevinLogo from "../assets/kevin.png";  
+import kevinLogo from "../assets/kevin.png";
 import jerryLogo from "../assets/jerry.png";
+import rupaulLogo from "../assets/rupaul.png"
 
 export default function Navbar({
   menuOpen,
@@ -129,6 +130,13 @@ export default function Navbar({
               className="mobile-toggle-img"
             />
           )}
+          {character === "rupaul" && (
+            <img
+              src={rupaulLogo}
+              alt="Toggle Menu"
+              className="mobile-toggle-img"
+            />
+          )}
         </div>
 
         <div className={`nav-links ${menuOpen ? "show" : ""}`}>
@@ -140,20 +148,51 @@ export default function Navbar({
                 value={character}
                 onChange={(e) => setCharacter(e.target.value)}
               >
-                <option onClick={toggleMenu} value="botchameleon">BotChameleon</option>
-                <option onClick={toggleMenu} value="bender">Bender</option>
-                <option onClick={toggleMenu} value="sparrow">Jack Sparrow</option>
-                <option onClick={toggleMenu} value="shakespeare">Shakespeare</option>
-                <option onClick={toggleMenu} value="mario">Mario</option>
-                <option onClick={toggleMenu} value="snoop">Snoop Dogg</option>
-                <option onClick={toggleMenu} value="trump">Donald Trump</option>
-                <option onClick={toggleMenu} value="yoda">Yoda</option>
-                <option onClick={toggleMenu} value="rick">Rick Sanchez</option>
-                <option onClick={toggleMenu} value="ye">Kanye West</option>
-                <option onClick={toggleMenu} value="borat">Borat</option>
-                <option onClick={toggleMenu} value="ruckus">Uncle Ruckus</option>
-                <option onClick={toggleMenu} value="kevin">Kevin O'Leary</option>
-                <option onClick={toggleMenu} value="jerry">Jerry Seinfeld</option>
+                <option onClick={toggleMenu} value="botchameleon">
+                  BotChameleon
+                </option>
+                <option onClick={toggleMenu} value="bender">
+                  Bender
+                </option>
+                <option onClick={toggleMenu} value="sparrow">
+                  Jack Sparrow
+                </option>
+                <option onClick={toggleMenu} value="shakespeare">
+                  Shakespeare
+                </option>
+                <option onClick={toggleMenu} value="mario">
+                  Mario
+                </option>
+                <option onClick={toggleMenu} value="snoop">
+                  Snoop Dogg
+                </option>
+                <option onClick={toggleMenu} value="trump">
+                  Donald Trump
+                </option>
+                <option onClick={toggleMenu} value="yoda">
+                  Yoda
+                </option>
+                <option onClick={toggleMenu} value="rick">
+                  Rick Sanchez
+                </option>
+                <option onClick={toggleMenu} value="ye">
+                  Kanye West
+                </option>
+                <option onClick={toggleMenu} value="borat">
+                  Borat
+                </option>
+                <option onClick={toggleMenu} value="ruckus">
+                  Uncle Ruckus
+                </option>
+                <option onClick={toggleMenu} value="kevin">
+                  Kevin O'Leary
+                </option>
+                <option onClick={toggleMenu} value="jerry">
+                  Jerry Seinfeld
+                </option>
+                <option onClick={toggleMenu} value="rupaul">
+                  RuPaul
+                </option>
               </select>
             </span>
           </button>
@@ -162,7 +201,11 @@ export default function Navbar({
               <img src={benderLogo} alt="Bender" className="nav-img-desk" />
             )}
             {character === "sparrow" && (
-              <img src={pirateLogo} alt="Jack Sparrow" className="nav-img-desk" />
+              <img
+                src={pirateLogo}
+                alt="Jack Sparrow"
+                className="nav-img-desk"
+              />
             )}
             {character === "shakespeare" && (
               <img
@@ -197,13 +240,28 @@ export default function Navbar({
               <img src={boratLogo} alt="Borat" className="nav-img-desk" />
             )}
             {character === "ruckus" && (
-              <img src={ruckusLogo} alt="Uncle Ruckus" className="nav-img-desk" />
+              <img
+                src={ruckusLogo}
+                alt="Uncle Ruckus"
+                className="nav-img-desk"
+              />
             )}
             {character === "kevin" && (
-              <img src={kevinLogo} alt="Kevin O'Leary" className="nav-img-desk" />
+              <img
+                src={kevinLogo}
+                alt="Kevin O'Leary"
+                className="nav-img-desk"
+              />
             )}
             {character === "jerry" && (
-              <img src={jerryLogo} alt="Jerry Seinfeld" className="nav-img-desk" />
+              <img
+                src={jerryLogo}
+                alt="Jerry Seinfeld"
+                className="nav-img-desk"
+              />
+            )}
+            {character === "rupaul" && (
+              <img src={rupaulLogo} alt="RuPaul" className="nav-img-desk" />
             )}
           </div>
         </div>
