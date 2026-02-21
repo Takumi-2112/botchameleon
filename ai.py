@@ -123,7 +123,7 @@ IMPORTANT: You have access to the previous conversation context. When appropriat
                 "top_p": 0.9,
                 "max_tokens": 500
             }),
-            timeout=20  # Increased timeout for longer context processing
+            timeout=60
         )
         
         print("Status Code:", response.status_code)
