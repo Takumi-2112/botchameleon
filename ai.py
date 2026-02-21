@@ -4,7 +4,7 @@ import json
 import os
 import dotenv
 
-# Load environment variables from .env file
+# Load environment variables from .env file API_KEY
 dotenv.load_dotenv()
 
 # Character system messages
@@ -113,7 +113,7 @@ IMPORTANT: You have access to the previous conversation context. When appropriat
             url="https://openrouter.ai/api/v1/chat/completions",
             headers=headers,
             data=json.dumps({
-                "model": "mistralai/mistral-small-3.2-24b-instruct:free",
+                "model": "deepseek/deepseek-r1-0528:free",
                 "messages": messages,
                 "filtering": {
                     "safety_level": "low",
