@@ -69,7 +69,7 @@ function App() {
   // Handle content warning decline
   const handleContentWarningDecline = () => {
     // Redirect user away
-    window.location.href = "https://www.google.com";
+    window.location.href = "https://www.google.com/search?q=kitty+cats&tbnid=KgZYzbd1oHFkzM&tbnh=0&tbnw=0&sca_esv=d9dae8ae9ef8ea53&cs=1&udm=2&biw=1440&bih=711&sxsrf=ANbL-n7bU1qv_kCUZtxifjP0dVDTJ08UaA%3A1771904030943&ei=HhydaZ-WOdrsiLMPl4Wi8Aw&ved=0ahUKEwifndzymPGSAxVaNmIAHZeCCM4Q4dUDCBI&uact=5&oq=kitty+cats&gs_lp=Egtnd3Mtd2l6LWltZyIKa2l0dHkgY2F0czIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgAQyBRAAGIAEMgUQABiABDIFEAAYgARIrSFQyghY3h9wCXgAkAEAmAGoAaABowyqAQM1Ljm4AQPIAQD4AQGYAhegAvkNwgIHECMYJxjJAsICCBAAGAcYChgewgINEAAYgAQYQxjHAxiKBcICCBAAGIAEGMcDwgIKEAAYgAQYxwMYCsICCxAAGIAEGLEDGIMBwgIKEAAYgAQYQxiKBcICCBAAGIAEGLEDwgIEEAAYA8ICEBAAGIAEGLEDGEMYgwEYigXCAg4QABiABBixAxiDARiKBcICDRAAGIAEGLEDGEMYigXCAg8QABiABBixAxiDARgKGAvCAgkQABiABBgKGAuYAwCIBgGSBwUxMC4xM6AHikmyBwQxLjEzuAeVDcIHCDItMTguNC4xyAe1AYAIAA&sclient=gws-wiz-img";
   };
 
   const toggleMenu = () => setMenuOpen(!menuOpen);
@@ -188,4 +188,27 @@ function App() {
             </div>
           ))}
           {isTyping && (
-          
+            <div className="message bot typing-indicator">
+              <span>{typingText}</span>
+            </div>
+          )}
+        </div>
+        <form className="chat-input" onSubmit={handleSend}>
+          <input
+            type="text"
+            value={input}
+            onChange={(e) => setInput(e.target.value)}
+            placeholder="Enter your prompt..."
+            disabled={isTyping}
+          />
+          <button type="submit" disabled={isTyping}>
+            {isTyping ? "..." : "Send"}
+          </button>
+        </form>
+      </div>
+      <Footer />
+    </div>
+  );
+}
+
+export default App;
