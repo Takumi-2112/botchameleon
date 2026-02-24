@@ -14,6 +14,7 @@ import ruckusLogo from "../assets/ruckus.png";
 import kevinLogo from "../assets/kevin.png";
 import jerryLogo from "../assets/jerry.png";
 import rupaulLogo from "../assets/rupaul.png"
+import epsteinLogo from "../assets/epstein.png"
 
 export default function Navbar({
   menuOpen,
@@ -137,6 +138,13 @@ export default function Navbar({
               className="mobile-toggle-img"
             />
           )}
+          {character === "epstein" && (
+            <img
+            src={epsteinLogo}
+            alt="Toggle Menu"
+            className="mobile-toggle-img"
+            />
+          )}
         </div>
 
         <div className={`nav-links ${menuOpen ? "show" : ""}`}>
@@ -192,6 +200,9 @@ export default function Navbar({
                 </option>
                 <option onClick={toggleMenu} value="rupaul">
                   RuPaul
+                </option>
+                <option onClick={toggleMenu} value="epstein">
+                  Jeffery Epstein
                 </option>
               </select>
             </span>
@@ -262,6 +273,9 @@ export default function Navbar({
             )}
             {character === "rupaul" && (
               <img src={rupaulLogo} alt="RuPaul" className="nav-img-desk" />
+            )}
+            {character === "epstein" && (
+              <img src={epsteinLogo} alt="Jeffery Epstein" className="nav-img-desk" />
             )}
           </div>
         </div>
