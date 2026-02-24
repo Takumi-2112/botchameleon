@@ -124,7 +124,7 @@ IMPORTANT: You have access to the previous conversation context. When appropriat
                 },
                 "temperature": 0.7,
                 "top_p": 0.9,
-                "max_tokens": 500
+                "max_tokens": 200
             }),
             timeout=60
         )
